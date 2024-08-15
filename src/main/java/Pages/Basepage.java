@@ -28,7 +28,7 @@ public class Basepage {
 
         // Connect to the Selenium Hub
         driver = new RemoteWebDriver(new URL("http://192.168.1.112:4444/wd/hub"), capabilities);
-
+        //new
         // Open the desired URL
         driver.get(url);
     }
