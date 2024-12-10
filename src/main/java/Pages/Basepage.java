@@ -25,9 +25,9 @@ public class Basepage {
         // Set DesiredCapabilities for the browser you want to use
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setBrowserName("chrome"); // Use "firefox" for Firefox
-
+        System.out.println("Connect to the Selenium Hub");
         // Connect to the Selenium Hub
-        driver = new RemoteWebDriver(new URL("http://192.168.1.112:4444/wd/hub"), capabilities);
+        driver = new RemoteWebDriver(new URL("http://192.168.118.71:4444/wd/hub"), capabilities);
         //new
         // Open the desired URL
         driver.get(url);
