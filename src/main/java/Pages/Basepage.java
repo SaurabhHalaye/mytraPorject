@@ -3,6 +3,7 @@ package Pages;
 import io.qameta.allure.*;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.annotations.AfterClass;
@@ -23,13 +24,20 @@ public class Basepage {
     @BeforeMethod(alwaysRun = true)
     public void setUp() throws Exception {
         // Set DesiredCapabilities for the browser you want to use
-        DesiredCapabilities capabilities = new DesiredCapabilities();
-        capabilities.setBrowserName("chrome"); // Use "firefox" for Firefox
-        System.out.println("Connect to the Selenium Hub");
+       // DesiredCapabilities capabilities = new DesiredCapabilities();
+        //capabilities.setBrowserName("chrome"); // Use "firefox" for
+        //capabilities.se
+        //System.out.println("Connect to the Selenium Hub");
         // Connect to the Selenium Hub
-        driver = new RemoteWebDriver(new URL("http://192.168.195.76:4444"), capabilities);
+        //driver = new RemoteWebDriver(new URL("http://192.168.195.76:4444"), capabilities);
         //new
         // Open the desired URL
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--start-maximized");
+        System.out.println("___________Connect to the Selenium Hub_______________");
+        URL remoteUrl = new URL("http://192.168.195.76:4444");
+        WebDriver driver = new RemoteWebDriver(remoteUrl, options);
+        driver.manage().window().maximize();
         driver.get(url);
     }
 
