@@ -1,52 +1,38 @@
 package Pages;
 
-import io.qameta.allure.*;
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
-import org.testng.annotations.AfterClass;
+import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
+import utils.AllureReportUtil;
 
 import java.net.URL;
 
-import static io.qameta.allure.SeverityLevel.CRITICAL;
-
 public class Basepage {
 
-
-    WebDriver driver;
+    protected static WebDriver driver;
     String url = "https://www.myntra.com/";
 
     @BeforeMethod(alwaysRun = true)
     public void setUp() throws Exception {
-        // Set DesiredCapabilities for the browser you want to use
-       // DesiredCapabilities capabilities = new DesiredCapabilities();
-        //capabilities.setBrowserName("chrome"); // Use "firefox" for
-        //capabilities.se
-        //System.out.println("Connect to the Selenium Hub");
-        // Connect to the Selenium Hub
-        //driver = new RemoteWebDriver(new URL("http://192.168.195.76:4444"), capabilities);
-        //new
-        // Open the desired URL
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--start-maximized");
         System.out.println("___________Connect to the Selenium Hub_______________");
         URL remoteUrl = new URL("http://192.168.195.76:4444");
-        WebDriver driver = new RemoteWebDriver(remoteUrl, options);
+        driver = new RemoteWebDriver(remoteUrl, options); // Corrected assignment
         driver.manage().window().maximize();
         driver.get(url);
     }
 
     @AfterMethod(alwaysRun = true)
     @Step("Quit the Browser")
-    public void tearDown() throws Exception {
+    public void tearDown(ITestResult result) throws Exception {
+        AllureReportUtil.captureOnFailure(driver, result);  // Automatically called after each test
         if (driver != null) {
             driver.quit();
         }
     }
 }
-
