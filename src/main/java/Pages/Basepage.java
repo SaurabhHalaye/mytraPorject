@@ -23,7 +23,7 @@ public class Basepage {
 
         if (env.equals("remote")) {
             System.out.println("___________Connect to the Selenium Hub_______________");
-            URL remoteUrl = new URL("http://192.168.1.8:4444");
+            URL remoteUrl = new URL("http://192.168.133.76:4444");
             driver = new RemoteWebDriver(remoteUrl, options);
         } else {
             System.out.println("___________Running Locally_______________");
