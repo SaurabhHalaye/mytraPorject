@@ -17,7 +17,7 @@ public class LoginPageTest extends Basepage {
     public void Loginpage2() throws InterruptedException {
         loginPage lp = new loginPage(driver);
         lp.clickOnSerchBox();
-        lp.clickOnMobileTab();
+      //  lp.clickOnMobileTab();
         System.out.println("Login Page 2");
         Thread.sleep(2000);
     }
