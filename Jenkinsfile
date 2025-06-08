@@ -1,26 +1,18 @@
 pipeline {
-    agent {
-        docker {
-            image 'maven:3.8.6-openjdk-17'
-        }
+    agent any
+    tools {
+        maven 'M3'  // This refers to Maven configured in Jenkins GUI
     }
 
     stages {
         stage('Build') {
             steps {
-                echo 'Building the project...'
                 sh 'mvn clean compile'
             }
         }
         stage('Test') {
             steps {
-                echo 'Running tests...'
                 sh 'mvn test'
-            }
-        }
-        stage('Deploy') {
-            steps {
-                echo 'Deploying the build...'
             }
         }
     }
