@@ -2,7 +2,7 @@ pipeline {
     agent any
     tools {
         maven 'M3'  // This refers to Maven configured in Jenkins GUI
-        allure 'ALLURE'
+        allure 'allure'
     }
 
     stages {
@@ -18,7 +18,7 @@ pipeline {
         }
         stage('Allure Report'){
             steps{
-                allure commandline: 'ALLURE', includeProperties: false, jdk: '', results: [[path: 'allure-results']]
+                allure commandline: 'allure', includeProperties: false, jdk: '', results: [[path: 'allure-results']]
             }
         }
     }
