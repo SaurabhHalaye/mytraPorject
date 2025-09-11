@@ -1,9 +1,9 @@
 pipeline {
-    agent any
-    tools {
-        maven 'M3'  // This refers to Maven configured in Jenkins GUI
-        allure 'allure'
-    }
+     agent any
+//     tools {
+//         maven 'M3'  // This refers to Maven configured in Jenkins GUI
+//         allure 'allure'
+//     }
 
     stages {
         stage('Build') {
@@ -16,10 +16,10 @@ pipeline {
                 sh 'mvn test -Denv=remote'
             }
         }
-        stage('Allure Report'){
-            steps{
-                allure commandline: 'allure', includeProperties: false, jdk: '', results: [[path: 'allure-results']]
-            }
-        }
+//         stage('Allure Report' ){
+//             steps{
+//                 allure commandline: 'allure', includeProperties: false, jdk: '', results: [[path: 'allure-results']]
+//             }
+//         }
     }
 }
